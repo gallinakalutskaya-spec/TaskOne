@@ -1,4 +1,5 @@
-from typing import Any
+"""Модуль для фильтрации и сортировки банковских операций."""
+
 
 def filter_by_state(data: list[dict], state: str = "EXECUTED") -> list[dict]:
     """
