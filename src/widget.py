@@ -61,5 +61,3 @@ def get_date(date_string: str) -> str:
 
     # Форматируем в ДД.ММ.ГГГГ
     return f"{day}.{month}.{year}"
-
-
