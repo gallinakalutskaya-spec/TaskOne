@@ -12,21 +12,17 @@ def get_mask_card_number(card_number: str) -> str:
     if len(card_number) != 16:
         raise ValueError(f"Номер карты должен содержать 16 цифр, а не {len(card_number)}")
 
-    mask = f"{card_number[:4]} {card_number[4:6]} ** **** {card_number[-4:]}"
+    mask = f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
     return mask
 
 
 def get_mask_account(account_number: str) -> str:
     """
-    Маскирует номер банковского счета
-    Args:
-        account_number(str): Номер счета (20 цифр)
-    Returns
-        str: Замаскированный счет в формате **XXXX (видны последние 4 цифры)
+    Маскирует номер счёта.
+    Принимает строку из 20 цифр, возвращает '**XXXX'.
     """
-    # Проверка: длина должна быть 20 символов
-    if len(account_number) != 20:
-        raise ValueError(f"Номер счёта должен содержать 20 цифр, а не {len(account_number)}")
+    # 🔒 Валидация: только цифры и ровно 20 символов
+    if not account_number.isdigit() or len(account_number) != 20:
+        raise ValueError("Номер счёта должен состоять из ровно 20 цифр")
 
-    mask = f"**{account_number[-4:]}"
-    return mask
+    return f"**{account_number[-4:]}"
