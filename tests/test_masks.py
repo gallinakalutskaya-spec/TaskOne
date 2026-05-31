@@ -14,7 +14,7 @@ def test_get_mask_card_number(card_number,expected):
     assert get_mask_card_number (card_number) == expected
 
 @pytest.mark.parametrize("wrong_card", [
-    '',                  #
+    '',
     "123",
     "12345678901234567",
     "card_number",
@@ -23,7 +23,7 @@ def test_get_mask_card_number(card_number,expected):
 ])
 def test_get_mask_card_number_wrong(wrong_card):
     with pytest.raises(ValueError):
-        get_mask_card_number("wrong_card")
+        get_mask_card_number(wrong_card)
 
 
 @pytest.mark.parametrize("account,expected", [

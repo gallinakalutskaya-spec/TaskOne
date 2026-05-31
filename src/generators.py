@@ -1,0 +1,1 @@
+def filter_by_currency(data: list) -> list:
