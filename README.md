@@ -41,3 +41,27 @@ pip install -r requirements.txt
 ## Лицензия:
 
 Этот проект лицензирован по [лицензии MIT](LICENSE).
+
+## 🔄 Модуль `generators`
+
+Модуль `src/generators.py` содержит функции-генераторы (итераторы) для эффективной обработки банковских данных. Использование `yield` позволяет обрабатывать большие объемы транзакций по одному элементу за раз, не загружая всю память созданием новых списков.
+
+### 📦 Доступные функции
+
+#### 1. `filter_by_currency(transactions: list[dict], currency: str)`
+Возвращает итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной.
+
+**Пример использования:**
+```python
+from src.generators import filter_by_currency
+
+transactions = [
+    {"id": 1, "operationAmount": {"currency": {"name": "USD"}}, "description": "Перевод"},
+    {"id": 2, "operationAmount": {"currency": {"name": "RUB"}}, "description": "Оплата"},
+    {"id": 3, "operationAmount": {"currency": {"name": "USD"}}, "description": "Возврат"}
+]
+
+usd_gen = filter_by_currency(transactions, "USD")
+
+print(next(usd_gen)["id"])  # Вывод: 1
+print(next(usd_gen)["id"])  # Вывод: 3
