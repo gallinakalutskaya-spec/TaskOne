@@ -15,6 +15,19 @@ git clone https://github.com/gallinakalutskaya-spec/TaskOne
 pip install -r requirements.txt
 
 ```
+
+## 📋 Логирование
+
+Проект использует стандартный модуль `logging` для записи событий и ошибок.
+
+### Настройка логгеров
+Логгеры настроены для модулей:
+- `src/masks.py` → логи записываются в `logs/masks.log`
+- `src/utils.py` → логи записываются в `logs/utils.log`
+
+### Формат логов 
+
+
 ## 📂 Работа с данными и внешними API
 
 ### Модуль `src/utils.py`
