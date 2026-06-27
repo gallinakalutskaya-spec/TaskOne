@@ -13,7 +13,24 @@ git clone https://github.com/gallinakalutskaya-spec/TaskOne
 2. Установите зависимости:
 ```
 pip install -r requirements.txt
+
 ```
+## 📂 Работа с данными и внешними API
+
+### Модуль `src/utils.py`
+Функция для чтения JSON-файлов с транзакциями.
+
+**`read_json_file(file_path)`**
+Читает JSON-файл и возвращает список словарей. Обрабатывает все ошибки:
+- Файл не найден
+- Пустой файл
+- Невалидный JSON
+- Данные не являются списком
+
+```python
+from src.utils import read_json_file
+
+transactions = read_json_file("data/operations.json")
 ## Использование:
 
 1. Откройте приложение в вашем веб-браузере.
