@@ -40,7 +40,45 @@ transactions = read_json_file("data/operations.json")
 ## Документация:
 
 Для получения дополнительной информации обратитесь к [документации](docs/README.md).
+## 🆕 Новый функционал
+
+В рамках обновления проекта были добавлены два новых модуля для расширения возможностей обработки данных и логирования.
+
+### 1. Модуль `src/generators.py`
+Содержит функции-генераторы для эффективной (ленивой) обработки больших объемов данных без создания лишних списков в памяти.
+
+* **`filter_by_currency(transactions, currency)`**  
+  Возвращает итератор транзакций, валюта которых совпадает с заданной.
+  ```python
+  from src.generators import filter_by_currency
+  
+  usd_gen = filter_by_currency(transactions, "USD")
+  print(next(usd_gen))  # Выведет первую транзакцию в USD
 
 ## Лицензия:
 
 Этот проект лицензирован по [лицензии MIT](LICENSE).
+
+## 🔄 Модуль `generators`
+
+Модуль `src/generators.py` содержит функции-генераторы (итераторы) для эффективной обработки банковских данных. Использование `yield` позволяет обрабатывать большие объемы транзакций по одному элементу за раз, не загружая всю память созданием новых списков.
+
+### 📦 Доступные функции
+
+#### 1. `filter_by_currency(transactions: list[dict], currency: str)`
+Возвращает итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной.
+
+**Пример использования:**
+```python
+from src.generators import filter_by_currency
+
+transactions = [
+    {"id": 1, "operationAmount": {"currency": {"name": "USD"}}, "description": "Перевод"},
+    {"id": 2, "operationAmount": {"currency": {"name": "RUB"}}, "description": "Оплата"},
+    {"id": 3, "operationAmount": {"currency": {"name": "USD"}}, "description": "Возврат"}
+]
+
+usd_gen = filter_by_currency(transactions, "USD")
+
+print(next(usd_gen)["id"])  # Вывод: 1
+print(next(usd_gen)["id"])  # Вывод: 3
