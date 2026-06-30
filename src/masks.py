@@ -1,32 +1,35 @@
+"""Модуль для маскировки номеров банковских карт и счетов."""
+
+from src.logger_config import setup_logger
+
+# Создаём логгер для этого модуля
+logger = setup_logger(
+    logger_name=__name__,
+    log_file="logs/masks.log"
+)
+
+
 def get_mask_card_number(card_number: str) -> str:
-    """
-    Маскирует номер банковской карты.
-    Args:
-        card_number (str): Номер карты (16 цифр).
+    """Маскирует номер банковской карты (16 цифр)."""
+    logger.info(f"Попытка маскировки номера карты: {card_number}")
 
-    Returns
-        str: Замаскированный номер в формате XXXX XX** **** XXXX
-    """
+    if not card_number.isdigit() or len(card_number) != 16:
+        logger.error(f"Некорректный номер карты: {card_number}")
+        raise ValueError("Номер карты должен состоять из ровно 16 цифр")
 
-    # Проверка: длина должна быть 16 символов
-    if len(card_number) != 16:
-        raise ValueError(f"Номер карты должен содержать 16 цифр, а не {len(card_number)}")
-
-    mask = f"{card_number[:4]} {card_number[4:6]} ** **** {card_number[-4:]}"
-    return mask
+    masked = f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
+    logger.info(f"Номер карты успешно замаскирован: {masked}")
+    return masked
 
 
 def get_mask_account(account_number: str) -> str:
-    """
-    Маскирует номер банковского счета
-    Args:
-        account_number(str): Номер счета (20 цифр)
-    Returns
-        str: Замаскированный счет в формате **XXXX (видны последние 4 цифры)
-    """
-    # Проверка: длина должна быть 20 символов
-    if len(account_number) != 20:
-        raise ValueError(f"Номер счёта должен содержать 20 цифр, а не {len(account_number)}")
+    """Маскирует номер счёта (20 цифр)."""
+    logger.info(f"Попытка маскировки номера счёта: {account_number}")
 
-    mask = f"**{account_number[-4:]}"
-    return mask
+    if not account_number.isdigit() or len(account_number) != 20:
+        logger.error(f"Некорректный номер счёта: {account_number}")
+        raise ValueError("Номер счёта должен состоять из ровно 20 цифр")
+
+    masked = f"**{account_number[-4:]}"
+    logger.info(f"Номер счёта успешно замаскирован: {masked}")
+    return masked

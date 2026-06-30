@@ -47,19 +47,12 @@ def mask_account_card(input_string: str) -> str:
 def get_date(date_string: str) -> str:
     """
     Преобразует дату из формата ISO в формат ДД.ММ.ГГГГ.
-
-    Args:
-        date_string (str): Дата в формате "2024-03-11T02:26:18.671407"
-
-    Returns:
-        str: Дата в формате "11.03.2024"
     """
-    # Извлекаем год, месяц, день через срезы
-    year = date_string[0:4]  # "2024"
-    month = date_string[5:7]  # "03"
-    day = date_string[8:10]  # "11"
+    # 🔒 Валидация: строка должна быть >= 10 символов и содержать разделитель '-'
+    if len(date_string) < 10 or "-" not in date_string:
+        raise ValueError("Неверный формат даты. Ожидается ISO (YYYY-MM-DD...)")
 
-    # Форматируем в ДД.ММ.ГГГГ
+    year = date_string[0:4]
+    month = date_string[5:7]
+    day = date_string[8:10]
     return f"{day}.{month}.{year}"
-
-
