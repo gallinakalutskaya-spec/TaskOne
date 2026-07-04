@@ -8,7 +8,6 @@ from src.generators import (
 )
 
 
-
 # ФИКСТУРЫ
 
 
@@ -39,7 +38,6 @@ def sample_transactions():
     ]
 
 
-
 # ТЕСТЫ filter_by_currency
 
 
@@ -63,7 +61,6 @@ def test_filter_by_currency_empty_list():
     assert result == []
 
 
-
 # ТЕСТЫ transaction_descriptions
 
 
@@ -80,7 +77,6 @@ def test_transaction_descriptions_varying_inputs(tx_list, expected):
     """Тестирует работу функции с различным количеством входных данных и пустым списком."""
     result = list(transaction_descriptions(tx_list))
     assert result == expected
-
 
 
 # ТЕСТЫ card_number_generator

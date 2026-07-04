@@ -7,9 +7,9 @@ def sample_operations():
     """Фикстура с тестовыми данными для переиспользования в тестах."""
     return [
         {"id": 1, "state": "EXECUTED", "date": "2023-10-05T12:00:00"},
-        {"id": 2, "state": "PENDING",  "date": "2023-11-01T09:30:00"},
+        {"id": 2, "state": "PENDING", "date": "2023-11-01T09:30:00"},
         {"id": 3, "state": "EXECUTED", "date": "2023-09-20T15:45:00"},
-        {"id": 4, "state": "CANCELLED","date": "2023-10-05T12:00:00"},
+        {"id": 4, "state": "CANCELLED", "date": "2023-10-05T12:00:00"},
     ]
 
 
@@ -18,9 +18,9 @@ def sample_operations():
 @pytest.mark.parametrize(
     "search_state, expected_ids",
     [
-        ("EXECUTED",    [1, 3]),
-        ("PENDING",     [2]),
-        ("CANCELLED",   [4]),
+        ("EXECUTED", [1, 3]),
+        ("PENDING", [2]),
+        ("CANCELLED", [4]),
         ("NON_EXISTENT", []),  # Тест: статус отсутствует в списке
     ],
 )
