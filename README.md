@@ -26,6 +26,21 @@ pip install -r requirements.txt
 - Пустой файл
 - Невалидный JSON
 - Данные не являются списком
+```markdown
+## 🆕 Новые возможности
+
+Добавлена поддержка чтения финансовых транзакций из CSV и Excel файлов через модуль `external_sources.py`.
+
+### Пример использования
+
+```python
+from external_sources import read_transactions_from_csv, read_transactions_from_excel
+
+# Чтение из CSV
+csv_data = read_transactions_from_csv("transactions.csv")
+
+# Чтение из Excel
+excel_data = read_transactions_from_excel("transactions_excel.xlsx")
 
 ```python
 from src.utils import read_json_file
