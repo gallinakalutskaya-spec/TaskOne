@@ -82,3 +82,26 @@ usd_gen = filter_by_currency(transactions, "USD")
 
 print(next(usd_gen)["id"])  # Вывод: 1
 print(next(usd_gen)["id"])  # Вывод: 3
+
+## 🔍 Модуль `src/search.py`
+
+Модуль для поиска и категоризации банковских операций с использованием регулярных выражений.
+
+### `process_bank_search(data, search)`
+Фильтрует транзакции по строке в описании (регистронезависимый поиск через `re`).
+
+```python
+from src.search import process_bank_search
+
+result = process_bank_search(transactions, "перевод")
+
+Подсчитывает количество операций по категориям.
+
+from src.search import process_bank_operations
+
+counts = process_bank_operations(transactions, ["Перевод", "Открытие"])
+# {'Перевод': 5, 'Открытие': 2}
+
+Интерактивное меню для работы с транзакциями.
+
+python -m src.main
